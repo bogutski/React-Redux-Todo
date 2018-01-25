@@ -10,6 +10,12 @@ const todo = (state = initialState, action) => {
     case 'TODO_ADD':
       return {
         ...state,
+        todoList: [
+          ...state.todoList,
+          {
+            ...action.payload,
+            id: Math.random(),
+          }],
       };
 
     default:
