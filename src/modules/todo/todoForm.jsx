@@ -7,10 +7,7 @@ class TodoForm extends Component {
     super(props);
 
     this.state = {
-      todo: {
-        name: '',
-        done: false,
-      },
+      name: '',
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -19,13 +16,10 @@ class TodoForm extends Component {
   addTodo(e) {
     e.preventDefault();
 
-    this.props.todoAdd(this.state.todo);
+    this.props.todoAdd(this.state.name);
 
     this.setState({
-      todo: {
-        name: '',
-        done: false,
-      },
+      name: '',
     });
   }
 
@@ -35,12 +29,9 @@ class TodoForm extends Component {
 
         <input
           type="text"
-          value={this.state.todo.name}
+          value={this.state.name}
           onChange={e => this.setState({
-            todo: {
-              name: e.target.value,
-              done: false,
-            },
+            name: e.target.value,
           })}
         />
 
@@ -51,11 +42,11 @@ class TodoForm extends Component {
 }
 
 const mapStateToProps = state => ({
-  todoList: state.todo.todoList,
+
 });
 
 const mapDispatchToProps = dispatch => ({
-  todoAdd: todo => dispatch(todoAdd(todo)),
+  todoAdd: todoName => dispatch(todoAdd(todoName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);

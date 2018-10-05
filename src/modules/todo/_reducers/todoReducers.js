@@ -13,7 +13,7 @@ const todo = (state = initialState, action) => {
         todoList: [
           ...state.todoList,
           {
-            ...action.payload,
+            name: action.payload,
             id: Math.random(),
           }],
       };

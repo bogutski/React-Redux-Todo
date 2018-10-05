@@ -1,7 +1,7 @@
-export function todoAdd(todo) {
+export function todoAdd(todoName) {
   return dispatch =>
     dispatch({
       type: 'TODO_ADD',
-      payload: todo,
+      payload: todoName,
     });
 }
