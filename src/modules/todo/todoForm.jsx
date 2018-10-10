@@ -10,7 +10,7 @@ class TodoForm extends Component {
   addTodo = e => {
     e.preventDefault();
 
-    this.props.todoAdd_(this.state.name);
+    this.props.todoAdd(this.state.name);
 
     this.setState({
       name: ''
@@ -37,7 +37,7 @@ class TodoForm extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  todoAdd_: todoName => dispatch(todoAdd(todoName))
+  todoAdd: todoName => dispatch(todoAdd(todoName))
 });
 
 export default connect(
