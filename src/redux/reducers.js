@@ -3,7 +3,7 @@ import todo from './../modules/todo/_reducers/todoReducers';
 
 // Combine Reducers
 const reducers = combineReducers({
-  todo,
+  todo
 });
 
 export default reducers;

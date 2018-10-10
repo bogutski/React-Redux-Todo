@@ -3,36 +3,31 @@ import { connect } from 'react-redux';
 import { todoAdd } from './_actions/todoActions';
 
 class TodoForm extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    name: ''
+  };
 
-    this.state = {
-      name: '',
-    };
-
-    this.addTodo = this.addTodo.bind(this);
-  }
-
-  addTodo(e) {
+  addTodo = e => {
     e.preventDefault();
 
-    this.props.todoAdd(this.state.name);
+    this.props.todoAdd_(this.state.name);
 
     this.setState({
-      name: '',
+      name: ''
     });
-  }
+  };
 
   render() {
     return (
       <form onSubmit={this.addTodo}>
-
         <input
           type="text"
           value={this.state.name}
-          onChange={e => this.setState({
-            name: e.target.value,
-          })}
+          onChange={e =>
+            this.setState({
+              name: e.target.value
+            })
+          }
         />
 
         <button type="submit">Add todo</button>
@@ -41,12 +36,11 @@ class TodoForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-
-});
-
 const mapDispatchToProps = dispatch => ({
-  todoAdd: todoName => dispatch(todoAdd(todoName)),
+  todoAdd_: todoName => dispatch(todoAdd(todoName))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoForm);
+export default connect(
+  null,
+  mapDispatchToProps
+)(TodoForm);

@@ -3,6 +3,8 @@ const initialState = {
     { id: 1, name: 'Task 1' },
     { id: 2, name: 'Task 2' },
   ],
+  buttonDisable: false,
+  loading: false
 };
 
 const todo = (state = initialState, action) => {
@@ -18,9 +20,36 @@ const todo = (state = initialState, action) => {
           }],
       };
 
+    case 'LOADING':
+      return {
+        ...state,
+        buttonDisable: true,
+        loading: true
+      };
+
+    case 'LOADED':
+      return {
+        ...state,
+        buttonDisable: false,
+        loading: false
+      };
+
+    case 'TODO_LOAD':
+      return {
+        ...state,
+        todoList: [
+          ...state.todoList,
+          ...adaptLoaded(action.payload)
+        ]
+      };
+
     default:
       return state;
   }
 };
 
 export default todo;
+
+function adaptLoaded(loadedArray) {
+  return loadedArray.map(el => ({ name: el.name, id: el._id }))
+}
