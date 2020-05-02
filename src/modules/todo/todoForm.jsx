@@ -1,39 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { todoAdd } from './_actions/todoActions';
 
-class TodoForm extends Component {
-  state = {
-    name: ''
-  };
+function TodoForm(props) {
 
-  addTodo = e => {
+  const [name, setName] = useState('');
+
+  const addTodo = e => {
     e.preventDefault();
-
-    this.props.todoAdd(this.state.name);
-
-    this.setState({
-      name: ''
-    });
+    props.todoAdd(name);
+    setName('');
   };
 
-  render() {
-    return (
-      <form onSubmit={this.addTodo}>
-        <input
-          type="text"
-          value={this.state.name}
-          onChange={e =>
-            this.setState({
-              name: e.target.value
-            })
-          }
-        />
+  return (
+    <form onSubmit={addTodo}>
+      <input
+        type="text"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
 
-        <button type="submit">Add todo</button>
-      </form>
-    );
-  }
+      <button type="submit">Add todo</button>
+    </form>
+  );
 }
 
 const mapDispatchToProps = dispatch => ({

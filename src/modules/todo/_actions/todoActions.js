@@ -14,7 +14,7 @@ export function loadTodo() {
       type: 'LOADING'
     });
 
-    axios.get('http://localhost:5000/group')
+    axios.get('https://jsonplaceholder.typicode.com/todos')
       .then(res => {
         dispatch({
           type: 'TODO_LOAD',

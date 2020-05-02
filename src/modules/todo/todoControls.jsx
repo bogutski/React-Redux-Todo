@@ -1,25 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { loadTodo } from './_actions/todoActions';
 import loader from './../../loader.svg';
 
-class TodoControls extends Component {
-  loadTodo = () => {
-    this.props.loadTodo();
-  };
+function TodoControls(props) {
+  return (
+    <button
+      disabled={props.buttonDisable}
+      onClick={props.loadTodo}
+      type="submit"
+    >
+      Load todos
+      {props.loading && <img src={loader} height={15} alt='loader' />}
+    </button>
+  );
 
-  render() {
-    return (
-      <button
-        disabled={this.props.buttonDisable}
-        onClick={this.loadTodo}
-        type="submit"
-      >
-        Load todos
-        {this.props.loading && <img src={loader} height={15} />}
-      </button>
-    );
-  }
 }
 
 const mapStateToProps = state => ({
