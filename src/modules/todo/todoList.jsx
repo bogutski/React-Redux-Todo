@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-class TodoLIst extends Component {
-  render() {
-    return (
-      <div>
+function TodoLIst(props) {
+  return (
+    <div>
 
-        <ul>
-          {
-            this.props.todoList.map(el =>
-              <li key={el.id}>{el.name}</li>)
-          }
-        </ul>
+      <ul>
+        {
+          props.todoList.map(el =>
+            <li key={el.id}>{el.name}</li>)
+        }
+      </ul>
 
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 const mapStateToProps = state => ({
